@@ -1,2 +1,2 @@
-git rm --cached -r .venv/
-git rm --cached -r kivy_venv/
+.venv/
+kivy_venv/
