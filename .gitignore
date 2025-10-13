@@ -1,3 +1,4 @@
+git reset HEAD
+git rm -r --cached kivy_venv
 .venv/
 kivy_venv/
-git reset HEAD
