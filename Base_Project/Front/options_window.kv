@@ -1,0 +1,21 @@
+<OptionsWindow>:
+    Image:
+        source: "Base_Project/Front/Prefabs/fon.jpg"
+        size_hint: [1,1]
+        fit_mode: "fill"
+
+    AnchorLayout:
+        anchor_y: "top"
+
+        GridLayout:
+            cols: 1 
+            spacing: 10 
+            padding: 100
+            Label:
+                text: "Comming soon"
+                size_hint: [.2,.2]
+
+            Button:
+                text: "Back"
+                size_hint: [.2,.2]
+                on_press: root.back_main_window()

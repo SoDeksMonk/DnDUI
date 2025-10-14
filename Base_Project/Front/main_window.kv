@@ -1,0 +1,59 @@
+<MainWindow>:
+    Image:
+        source: "Base_Project/Front/Prefabs/fon.jpg"
+        size_hint: [1,1]
+        fit_mode: "fill"
+
+    AnchorLayout:
+        anchor_y: "top"
+
+        GridLayout:
+            id: main_struct_MW
+            cols: 1 
+            spacing: 10 
+            padding: 100
+
+            StackLayout:
+                id: Top_bar
+                orientation: 'lr-tb'
+                padding: 10
+                spacing: 5
+                size_hint: [1,1]
+
+            Label:
+                id: Logo
+                text: "text"
+                color: 1,0,0,1
+            
+            Button:
+                id: CT_Char
+                text: "создать персонажа"
+                size_hint:[.2, .4]
+                on_press: root.create_character()
+
+            Button:
+                id: LD_Char
+                text: "Загрузить персонажа"
+                size_hint:[.2, .4]
+
+            Button:
+                id: CT_Par
+                text: "создать партию"
+                size_hint:[.2, .4]
+
+            Button:
+                id: PR_Par
+                text: "подключиться к партии"
+                size_hint: [.2, .4]
+
+            Button:
+                id: Setting
+                text: "настройки"
+                size_hint: [.2, .4]
+                on_press: root.setting()
+
+            Button:
+                id: Exit
+                text: "выход"
+                size_hint: [.2, .4]
+                on_press: root.exit()

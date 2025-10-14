@@ -7,6 +7,8 @@ class CharacterWindow(Screen):
         super().__init__(**kw)
         self.name = 'CharacterWindow'
 
+    
+
     def back_main_window(self):
         self.manager.current = 'MainWindow'
         return 0

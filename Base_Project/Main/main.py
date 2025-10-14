@@ -3,9 +3,9 @@ import os
 from kivy.app import App
 from kivy.config import Config
 from kivymd.app import MDApp
-from kivy.graphics.texture import Texture
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.core.window import Window
+from kivy.lang import Builder
 
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -13,8 +13,6 @@ sys.path.append(os.path.dirname(SCRIPT_DIR))
 from Front.character_window import CharacterWindow
 from Front.main_window import MainWindow
 from Front.options_window import OptionsWindow
-#character_window_app = CharacterWindow()
-#main_window_app = Window()
 
 Config.set('graphics', 'resizable', '0')
 Config.set('graphics', 'width', '650')
@@ -31,7 +29,10 @@ class ScreenManagement(ScreenManager):
 
 class DnDUIApp(App):
     def build(self):
-        texture = Texture.create()
+        Builder.load_file("Base_Project/Front/main_window.kv")
+        Builder.load_file("Base_Project/Front/options_window.kv")
+        Builder.load_file("Base_Project/Front/character_window.kv")
+        Builder.load_file("Base_Project/Main/dndui.kv")
         
         
 
