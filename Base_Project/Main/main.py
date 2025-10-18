@@ -1,22 +1,25 @@
 import sys
 import os
+from kivy.logger import Logger
 from kivy.app import App
 from kivy.config import Config
 #from kivymd.app import MDApp
 from kivy.uix.screenmanager import ScreenManager#, Screen
 from kivy.core.window import Window
 from kivy.lang import Builder
-
+#from kivy.properties import 
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.dirname(SCRIPT_DIR))
 from Front.character_window import CharacterWindow
 from Front.main_window import MainWindow
 from Front.options_window import OptionsWindow
+#from Lib.container import
 
-Config.set('graphics', 'resizable', '0')
-Config.set('graphics', 'width', '650')
-Config.set('graphics', 'height', '880')
+
+#Config.set('graphics', 'resizable', '0')
+#Config.set('graphics', 'width', '650')
+#Config.set('graphics', 'height', '880')
 
 
 class ScreenManagement(ScreenManager):

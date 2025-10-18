@@ -84,19 +84,25 @@
 
                 Label:
                     text: "lvltext"
-                    size_hint: [.5,.4]
+                    size_hint: [.5,.3]
 
                 Button:
-                    text: "lvl"
-                    size_hint: [.5,.4]
+                    id: lvl_btn
+                    size_hint: [.5,.3]
+
+                Label:
+                    id: exp_cur_nee
+                    size_hint: [1,.1]
 
                 Label:
                     text: "exptext"
                     size_hint: [.5,.3]
 
                 TextInput:
-                    text: "exp"
+                    id: exp_set
                     size_hint: [.5,.3]
+                    multiline: False
+                    on_focus: root.give_exp(), root.reboot()
 
                 Label:
                     text: "armtext"
@@ -215,31 +221,46 @@
                                     size_hint: [1,.4]
 
                                     Label:
-                                        text: "mod"
+                                        id: str_mod
                                         size_hint: [.4,1]
 
                                     TextInput:
-                                        text: "str"
+                                        id: str
                                         size_hint: [.4,1]
+
                                     Button:
+                                        id: str_up_btn
                                         text: "+"
-                                        size_hint: [.2,1]
+                                        size_hint: [.1,1]
+                                        on_press: root.up_char(str_up_btn), root.reboot()
+
+                                    Button:
+                                        id: str_down_btn
+                                        text: "-"
+                                        size_hint: [.1,1]
+                                        on_press: root.down_char(str_down_btn), root.reboot()
+
                                 StackLayout:
                                     id: saving_thows_strength
                                     orientation: 'lr-tb'
                                     size_hint: [1,.2]
+
                                     Label:
                                         text: "str_spas"
                                         size_hint: [.8,1]
+
                                     Button:
                                         text: "+"
                                         size_hint: [.2,1]
+
                                 StackLayout:
                                     orientation: 'lr-tb'
                                     size_hint: [1,.2]
+
                                     Label:
                                         text: "str_atl"
                                         size_hint: [.8,1]
+
                                     Button:
                                         text: "+"
                                         size_hint: [.2,1]
@@ -263,16 +284,24 @@
                                     size_hint: [1,.4]
 
                                     Label:
-                                        text: "mod"
+                                        id: dex_mod
                                         size_hint: [.4,1]
 
                                     TextInput:
-                                        text: "dex"
+                                        id: dex
                                         size_hint: [.4,1]
 
                                     Button:
+                                        id: dex_up_btn
                                         text: "+"
-                                        size_hint: [.2,1]
+                                        size_hint: [.1,1]
+                                        on_press: root.up_char(dex_up_btn), root.reboot()
+                                    
+                                    Button:
+                                        id: dex_down_btn
+                                        text: "-"
+                                        size_hint: [.1,1]
+                                        on_press: root.down_char(dex_down_btn), root.reboot()
 
                                 StackLayout:
                                     id: saving_thows_dexterity
@@ -340,16 +369,24 @@
                                     size_hint: [1,.4]
 
                                     Label:
-                                        text: "mod"
+                                        id: con_mod
                                         size_hint: [.4,1]
 
                                     TextInput:
-                                        text: "con"
+                                        id: con
                                         size_hint: [.4,1]
 
                                     Button:
+                                        id: con_up_btn
                                         text: "+"
-                                        size_hint: [.2,1]
+                                        size_hint: [.1,1]
+                                        on_press: root.up_char(con_up_btn), root.reboot()
+                                    
+                                    Button:
+                                        id: con_down_btn
+                                        text: "-"
+                                        size_hint: [.1,1]
+                                        on_press: root.down_char(con_down_btn), root.reboot()
 
                                 StackLayout:
                                     id: saving_thows_constitution
@@ -394,16 +431,24 @@
                                     size_hint: [1,.4]
 
                                     Label:
-                                        text: "mod"
+                                        id: int_mod
                                         size_hint: [.4,1]
 
                                     TextInput:
-                                        text: "int"
+                                        id: int
                                         size_hint: [.4,1]
 
                                     Button:
+                                        id: int_up_btn
                                         text: "+"
-                                        size_hint: [.2,1]
+                                        size_hint: [.1,1]
+                                        on_press: root.up_char(int_up_btn), root.reboot()
+                                    
+                                    Button:
+                                        id: int_down_btn
+                                        text: "-"
+                                        size_hint: [.1,1]
+                                        on_press: root.down_char(int_down_btn), root.reboot()
 
                                 StackLayout:
                                     id: saving_thows_intelligence
@@ -489,16 +534,24 @@
                                     size_hint: [1,.4]
 
                                     Label:
-                                        text: "mod"
+                                        id: wis_mod
                                         size_hint: [.4,1]
 
                                     TextInput:
-                                        text: "mind"
+                                        id: wis
                                         size_hint: [.4,1]
 
                                     Button:
+                                        id: wis_up_btn
                                         text: "+"
-                                        size_hint: [.2,1]
+                                        size_hint: [.1,1]
+                                        on_press: root.up_char(wis_up_btn), root.reboot()
+
+                                    Button:
+                                        id: wis_down_btn
+                                        text: "-"
+                                        size_hint: [.1,1]
+                                        on_press: root.down_char(wis_down_btn), root.reboot()
 
                                 StackLayout:
                                     orientation: 'lr-tb'
@@ -583,16 +636,24 @@
                                     size_hint: [1,.4]
 
                                     Label:
-                                        text: "mod"
+                                        id: cha_mod
                                         size_hint: [.4,1]
 
                                     TextInput:
-                                        text: "char"
+                                        id: cha
                                         size_hint: [.4,1]
 
                                     Button:
+                                        id: cha_up_btn
                                         text: "+"
-                                        size_hint: [.2,1]
+                                        size_hint: [.1,1]
+                                        on_press: root.up_char(cha_up_btn), root.reboot()
+
+                                    Button:
+                                        id: cha_down_btn
+                                        text: "-"
+                                        size_hint: [.1,1]
+                                        on_press: root.down_char(cha_down_btn), root.reboot()
 
                                 StackLayout:
                                     orientation: 'lr-tb'
@@ -703,6 +764,7 @@
 
                 TabbedPanelItem:
                     text: "Skils"
+
                     StackLayout:
                         id: right_modul
                         size_hint: [.6,.6]
@@ -716,6 +778,7 @@
                         Button:
                             text: "skils class"
                             size_hint: [1,.6]
+
                 TabbedPanelItem:
                     text: "Item"
                     StackLayout:
@@ -730,6 +793,7 @@
                         Button:
                             text: "char"
                             size_hint: [.3,.15]
+                            
                 TabbedPanelItem:
                     text: "History"
                 TabbedPanelItem:
