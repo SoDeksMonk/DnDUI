@@ -1,6 +1,5 @@
-from kivy.app import App
 from kivy.config import Config
-from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.uix.screenmanager import Screen
 from kivy.core.window import Window
 #Config.set("kivy", "window_icon", "fon.jpg")
 

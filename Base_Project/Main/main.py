@@ -2,8 +2,8 @@ import sys
 import os
 from kivy.app import App
 from kivy.config import Config
-from kivymd.app import MDApp
-from kivy.uix.screenmanager import ScreenManager, Screen
+#from kivymd.app import MDApp
+from kivy.uix.screenmanager import ScreenManager#, Screen
 from kivy.core.window import Window
 from kivy.lang import Builder
 
@@ -17,8 +17,7 @@ from Front.options_window import OptionsWindow
 Config.set('graphics', 'resizable', '0')
 Config.set('graphics', 'width', '650')
 Config.set('graphics', 'height', '880')
-Window.size = (650, 880)
-Window.minimum_width, Window.minimum_height = (600, 800)
+
 
 class ScreenManagement(ScreenManager):
     def __init__(self, **kwargs):
@@ -29,6 +28,9 @@ class ScreenManagement(ScreenManager):
 
 class DnDUIApp(App):
     def build(self):
+        Window.size = (650, 880)
+        Window.minimum_width, Window.minimum_height = (600, 800)
+        
         Builder.load_file("Base_Project/Front/main_window.kv")
         Builder.load_file("Base_Project/Front/options_window.kv")
         Builder.load_file("Base_Project/Front/character_window.kv")

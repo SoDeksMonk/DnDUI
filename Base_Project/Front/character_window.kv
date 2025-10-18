@@ -225,6 +225,7 @@
                                         text: "+"
                                         size_hint: [.2,1]
                                 StackLayout:
+                                    id: saving_thows_strength
                                     orientation: 'lr-tb'
                                     size_hint: [1,.2]
                                     Label:
@@ -268,42 +269,56 @@
                                     TextInput:
                                         text: "dex"
                                         size_hint: [.4,1]
+
                                     Button:
                                         text: "+"
                                         size_hint: [.2,1]
+
                                 StackLayout:
+                                    id: saving_thows_dexterity
                                     orientation: 'lr-tb'
                                     size_hint: [1,.2]
+
                                     Label:
                                         text: "dex_spas"
                                         size_hint: [.8,1]
+
                                     Button:
                                         text: "+"
                                         size_hint: [.2,1]
+
                                 StackLayout:
                                     orientation: 'lr-tb'
                                     size_hint: [1,.2]
+
                                     Label:
                                         text: "dex_akr"
                                         size_hint: [.8,1]
+
                                     Button:
                                         text: "+"
                                         size_hint: [.2,1]
+
                                 StackLayout:
                                     orientation: 'lr-tb'
                                     size_hint: [1,.2]
+
                                     Label:
                                         text: "dex_lov"
                                         size_hint: [.8,1]
+
                                     Button:
                                         text: "+"
                                         size_hint: [.2,1]
+
                                 StackLayout:
                                     orientation: 'lr-tb'
                                     size_hint: [1,.2]
+
                                     Label:
                                         text: "dex_stls"
                                         size_hint: [.8,1]
+
                                     Button:
                                         text: "+"
                                         size_hint: [.2,1]
@@ -331,15 +346,20 @@
                                     TextInput:
                                         text: "con"
                                         size_hint: [.4,1]
+
                                     Button:
                                         text: "+"
                                         size_hint: [.2,1]
+
                                 StackLayout:
+                                    id: saving_thows_constitution
                                     orientation: 'lr-tb'
                                     size_hint: [1,.2]
+
                                     Label:
                                         text: "con_spas"
                                         size_hint: [.8,1]
+
                                     Button:
                                         text: "+"
                                         size_hint: [.2,1]
@@ -375,29 +395,88 @@
 
                                     Label:
                                         text: "mod"
-                                        size_hint: [.5,1]
+                                        size_hint: [.4,1]
 
                                     TextInput:
                                         text: "int"
-                                        size_hint: [.5,1]
-                                Label:
-                                    text: "int_spas"
+                                        size_hint: [.4,1]
+
+                                    Button:
+                                        text: "+"
+                                        size_hint: [.2,1]
+
+                                StackLayout:
+                                    id: saving_thows_intelligence
+                                    orientation: 'lr-tb'
                                     size_hint: [1,.2]
-                                Label:
-                                    text: "int_an"
+
+                                    Label:
+                                        text: "int_spas"
+                                        size_hint: [.8,1]
+
+                                    Button:
+                                        text: "+"
+                                        size_hint: [.2,1]
+
+                                StackLayout:
+                                    orientation: 'lr-tb'
                                     size_hint: [1,.2]
-                                Label:
-                                    text: "int_ist"
+
+                                    Label:
+                                        text: "int_an"
+                                        size_hint: [.8,1]
+
+                                    Button:
+                                        text: "+"
+                                        size_hint: [.2,1]
+
+                                StackLayout:
+                                    orientation: 'lr-tb'
                                     size_hint: [1,.2]
-                                Label:
-                                    text: "int_mag"
+
+                                    Label:
+                                        text: "int_ist"
+                                        size_hint: [.8,1]
+
+                                    Button:
+                                        text: "+"
+                                        size_hint: [.2,1]
+
+                                StackLayout:
+                                    orientation: 'lr-tb'
                                     size_hint: [1,.2]
-                                Label:
-                                    text: "int_nat"
+
+                                    Label:
+                                        text: "int_mag"
+                                        size_hint: [.8,1]
+
+                                    Button:
+                                        text: "+"
+                                        size_hint: [.2,1]
+
+                                StackLayout:
+                                    orientation: 'lr-tb'
                                     size_hint: [1,.2]
-                                Label:
-                                    text: "int_rel"
+
+                                    Label:
+                                        text: "int_nat"
+                                        size_hint: [.8,1]
+
+                                    Button:
+                                        text: "+"
+                                        size_hint: [.2,1]
+
+                                StackLayout:
+                                    orientation: 'lr-tb'
                                     size_hint: [1,.2]
+
+                                    Label:
+                                        text: "int_rel"
+                                        size_hint: [.8,1]
+
+                                    Button:
+                                        text: "+"
+                                        size_hint: [.2,1]
 
                             GridLayout:
                                 id: wisdom
@@ -411,29 +490,87 @@
 
                                     Label:
                                         text: "mod"
-                                        size_hint: [.5,1]
+                                        size_hint: [.4,1]
 
                                     TextInput:
                                         text: "mind"
-                                        size_hint: [.5,1]
-                                Label:
-                                    text: "mind_spas"
+                                        size_hint: [.4,1]
+
+                                    Button:
+                                        text: "+"
+                                        size_hint: [.2,1]
+
+                                StackLayout:
+                                    orientation: 'lr-tb'
                                     size_hint: [1,.2]
-                                Label:
-                                    text: "mind_vos"
+
+                                    Label:
+                                        text: "mind_spas"
+                                        size_hint: [.8,1]
+
+                                    Button:
+                                        text: "+"
+                                        size_hint: [.2,1]
+
+                                StackLayout:
+                                    orientation: 'lr-tb'
                                     size_hint: [1,.2]
-                                Label:
-                                    text: "mind_sur"
+
+                                    Label:
+                                        text: "mind_vos"
+                                        size_hint: [.8,1]
+
+                                    Button:
+                                        text: "+"
+                                        size_hint: [.2,1]
+
+                                StackLayout:
+                                    orientation: 'lr-tb'
                                     size_hint: [1,.2]
-                                Label:
-                                    text: "mind_med"
+
+                                    Label:
+                                        text: "mind_sur"
+                                        size_hint: [.8,1]
+
+                                    Button:
+                                        text: "+"
+                                        size_hint: [.2,1]
+
+                                StackLayout:
+                                    orientation: 'lr-tb'
                                     size_hint: [1,.2]
-                                Label:
-                                    text: "mind_pron"
+
+                                    Label:
+                                        text: "mind_med"
+                                        size_hint: [.8,1]
+
+                                    Button:
+                                        text: "+"
+                                        size_hint: [.2,1]
+
+                                StackLayout:
+                                    orientation: 'lr-tb'
                                     size_hint: [1,.2]
-                                Label:
-                                    text: "mind_anim"
+
+                                    Label:
+                                        text: "mind_pron"
+                                        size_hint: [.8,1]
+
+                                    Button:
+                                        text: "+"
+                                        size_hint: [.2,1]
+
+                                StackLayout:
+                                    orientation: 'lr-tb'
                                     size_hint: [1,.2]
+
+                                    Label:
+                                        text: "mind_anim"
+                                        size_hint: [.8,1]
+
+                                    Button:
+                                        text: "+"
+                                        size_hint: [.2,1]
 
                             GridLayout:
                                 id: charisma
@@ -447,45 +584,129 @@
 
                                     Label:
                                         text: "mod"
-                                        size_hint: [.5,1]
+                                        size_hint: [.4,1]
 
                                     TextInput:
                                         text: "char"
-                                        size_hint: [.5,1]
-                                Label:
-                                    text: "char_spas"
+                                        size_hint: [.4,1]
+
+                                    Button:
+                                        text: "+"
+                                        size_hint: [.2,1]
+
+                                StackLayout:
+                                    orientation: 'lr-tb'
                                     size_hint: [1,.2]
-                                Label:
-                                    text: "char_show"
+
+                                    Label:
+                                        text: "char_spas"
+                                        size_hint: [.8,1]
+
+                                    Button:
+                                        text: "+"
+                                        size_hint: [.2,1]
+
+                                StackLayout:
+                                    orientation: 'lr-tb'
                                     size_hint: [1,.2]
-                                Label:
-                                    text: "char_zap"
+
+                                    Label:
+                                        text: "char_show"
+                                        size_hint: [.8,1]
+
+                                    Button:
+                                        text: "+"
+                                        size_hint: [.2,1]
+
+                                StackLayout:
+                                    orientation: 'lr-tb'
                                     size_hint: [1,.2]
-                                Label:
-                                    text: "char_lie"
+
+                                    Label:
+                                        text: "char_zap"
+                                        size_hint: [.8,1]
+
+                                    Button:
+                                        text: "+"
+                                        size_hint: [.2,1]
+
+                                StackLayout:
+                                    orientation: 'lr-tb'
                                     size_hint: [1,.2]
-                                Label:
-                                    text: "char_ubed"
+
+                                    Label:
+                                        text: "char_lie"
+                                        size_hint: [.8,1]
+                                    
+                                    Button:
+                                        text: "+"
+                                        size_hint: [.2,1]
+
+                                StackLayout:
+                                    orientation: 'lr-tb'
                                     size_hint: [1,.2]
+
+                                    Label:
+                                        text: "char_ubed"
+                                        size_hint: [.8,1]
+
+                                    Button:
+                                        text: "+"
+                                        size_hint: [.2,1]
+
                         StackLayout:
                             id: stats_right_bar
                             orientation: 'lr-tb'
                             size_hint: [.3,1]
+
+                            GridLayout:
+                                id: stats_second
+                                cols: 1
+                                padding: 2
+                                size_hint: [1,.8]
+
+                                StackLayout:
+                                    orientation: 'lr-tb'
+                                    size_hint: [1,.2]
+
+                                    Label:
+                                        text: "speedtext"
+                                        size_hint: [1,.2]
+
+                                    Button:
+                                        text: "speed"
+                                        size_hint: [1,.8]
+
+                                StackLayout:
+                                    orientation: 'lr-tb'
+                                    size_hint: [1,.2]
+
+                                    Label:
+                                        text: "seetext"
+                                        size_hint: [1,.2]
+
+                                    Button:
+                                        text: "see"
+                                        size_hint: [1,.8]
+                                
+                                StackLayout:
+                                    orientation: 'lr-tb'
+                                    size_hint: [1,.2]
+
+                                    Label:
+                                        text: "inittext"
+                                        size_hint: [1,.2]
+
+                                    Button:
+                                        text: "init"
+                                        size_hint: [1,.8]
 
                 TabbedPanelItem:
                     text: "Skils"
                     StackLayout:
                         id: right_modul
                         size_hint: [.6,.6]
-                        Button:
-                            text: "init"
-                            size_hint: [.2,.1]
-                        Button:
-                            text: "speed"
-                            size_hint: [.2,.1]
-                        Button:
-                            text: "see"
-                            size_hint: [.3,.1]
+                                                
                         Button:
                             text: "sost"
                             size_hint: [.3,.1]
