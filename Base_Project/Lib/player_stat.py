@@ -6,6 +6,7 @@ class Characteristic:
         pass
     def clear(self):
         self.__lvl = 1
+        self.__exp_total = 0
         self.__exp_need = 300
         self.__exp_current = 0
         self.__exp_skale = [0,300,900,2700,6500,14000,23000,34000,48000,64000,85000,
@@ -26,6 +27,7 @@ class Characteristic:
         self.__charisma_modifier = 0
     #
     __lvl = 1
+    __exp_total = 0
     __exp_need = 300
     __exp_current = 0
     __exp_skale = [0,300,900,2700,6500,14000,23000,34000,48000,64000,85000,
@@ -73,6 +75,7 @@ class Characteristic:
     def give_exp_current(self, value):
         try:
             self.__exp_current += int(value)
+            self.__exp_total += int(value)
         except:
             Logger.exception(f"Warning:{self.give_exp_current.__name__} in {self} input error")
 

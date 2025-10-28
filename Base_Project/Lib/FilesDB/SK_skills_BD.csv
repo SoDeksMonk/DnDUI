@@ -1,0 +1,6 @@
+SK_skills_BD_id,SK_skill_name,description,id_skills_BD
+1,duelist,"As long as you hold a melee weapon in one hand and don't use another weapon, you get a +2 bonus to damage rolls with that weapon.",1
+2,Protection,"If the creature you see is not attacking you, but another creature within 5 feet of you, you can use your reaction to interfere with its attack roll.",1
+3,defense,"As long as you wear the armor, you get a +1 CD bonus.",1
+4,Fighting with big guns,"If you have a ""1"" or ""2"" on the damage dice during an attack that you made with a melee weapon, holding it with both hands, then you can throw this die, and you must use the new result, even if ""1"" or ""2"" is dropped again.",1
+5,Shooting,You get a +2 bonus to the attack roll when you attack with a ranged weapon.,1

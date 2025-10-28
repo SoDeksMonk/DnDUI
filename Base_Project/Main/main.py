@@ -14,7 +14,7 @@ sys.path.append(os.path.dirname(SCRIPT_DIR))
 from Front.character_window import CharacterWindow
 from Front.main_window import MainWindow
 from Front.options_window import OptionsWindow
-#from Lib.container import
+from Lib.container import SqliteWork
 
 
 #Config.set('graphics', 'resizable', '0')
@@ -34,6 +34,11 @@ class DnDUIApp(App):
         Window.size = (650, 880)
         Window.minimum_width, Window.minimum_height = (600, 800)
         
+        #SqliteWork(SqliteWork, 'Base_Project/Lib/character.db')
+        #connect = SqliteWork.open_connection(SqliteWork)
+        #SqliteWork.initialization_tables(SqliteWork, connect)
+        #SqliteWork.close_connection(connect)
+
         Builder.load_file("Base_Project/Front/main_window.kv")
         Builder.load_file("Base_Project/Front/options_window.kv")
         Builder.load_file("Base_Project/Front/character_window.kv")
