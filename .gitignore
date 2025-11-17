@@ -1,4 +1,3 @@
 .venv/
 kivy_venv/
-git rm -r .vscode
-#.vscode/
+.vscode/
