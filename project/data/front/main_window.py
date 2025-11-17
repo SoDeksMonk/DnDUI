@@ -2,6 +2,7 @@ from kivy.config import Config
 from kivy.uix.screenmanager import Screen
 from kivy.logger import Logger
 from kivy.core.window import Window
+from kivy.app import App
 #Config.set("kivy", "window_icon", "fon.jpg")
 
 
@@ -22,5 +23,5 @@ class MainWindow(Screen):
         return 0
     
     def exit(self):
-        Window.close()
+        #App.stop()
         return 0

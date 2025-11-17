@@ -1,10 +1,11 @@
 from sqlalchemy import create_engine, Column, Integer, String, Text, ForeignKey, Table
 from sqlalchemy.orm import declarative_base, relationship
+import logging
 
 Base = declarative_base()
 
 # Связующие таблицы для отношений many-to-many
-features_link = Table('featureLink', Base.metadata,
+features_link = Table('featuresLink', Base.metadata,
     Column('id_classFeatures', Integer, ForeignKey('classFeatures.id'), primary_key=True),
     Column('id_features', Integer, ForeignKey('features.id'), primary_key=True)
 )
@@ -58,10 +59,7 @@ traits_link = Table('traitsLink', Base.metadata,
 
 # Основные модели
 class AbilityBase(Base):
-    """_summary_
-
-    Args:
-        Base (_type_): _description_
+    """The ability table
     """
     __tablename__ = 'ability'
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -73,30 +71,21 @@ class AbilityBase(Base):
     charisma = Column(Integer, nullable=False)
 
 class AlignmentsBase(Base):
-    """_summary_
-
-    Args:
-        Base (_type_): _description_
+    """the alignments table
     """
     __tablename__ = 'alignments'
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String, nullable=False)
 
 class ArmorProfBase(Base):
-    """_summary_
-
-    Args:
-        Base (_type_): _description_
+    """the armor profience table
     """
     __tablename__ = 'armorProf'
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String, nullable=False)
 
 class ArmorsBase(Base):
-    """_summary_
-
-    Args:
-        Base (_type_): _description_
+    """the armor table
     """
     __tablename__ = 'armors'
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -109,10 +98,7 @@ class ArmorsBase(Base):
     cost = Column(Integer, nullable=False)
 
 class BackgroundBase(Base):
-    """_summary_
-
-    Args:
-        Base (_type_): _description_
+    """the background table
     """
     __tablename__ = 'background'
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -122,10 +108,7 @@ class BackgroundBase(Base):
     toolProf = Column(String)
 
 class CharacterBase(Base):
-    """_summary_
-
-    Args:
-        Base (_type_): _description_
+    """the character table
     """
     __tablename__ = 'characters'
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -146,10 +129,7 @@ class CharacterBase(Base):
     equipment = relationship("Equipment")
 
 class ClassBase(Base):
-    """_summary_
-
-    Args:
-        Base (_type_): _description_
+    """the class table
     """
     __tablename__ = 'class'
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -176,10 +156,7 @@ class ClassBase(Base):
                                       secondary=class_all_link, back_populates="classes")
 
 class ClassFeaturesBase(Base):
-    """_summary_
-
-    Args:
-        Base (_type_): _description_
+    """the table of class features
     """
     __tablename__ = 'classFeatures'
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -195,10 +172,7 @@ class ClassFeaturesBase(Base):
                                 back_populates="class_features")
 
 class CoinsBase(Base):
-    """_summary_
-
-    Args:
-        Base (_type_): _description_
+    """the coins table
     """
     __tablename__ = 'coins'
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -206,10 +180,7 @@ class CoinsBase(Base):
     value = Column(Integer, nullable=False)
 
 class EquipmentBase(Base):
-    """_summary_
-
-    Args:
-        Base (_type_): _description_
+    """the equipment table
     """
     __tablename__ = 'equipment'
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -226,36 +197,27 @@ class EquipmentBase(Base):
                              back_populates="equipment")
 
 class FeaturesBase(Base):
-    """_summary_
-
-    Args:
-        Base (_type_): _description_
+    """the features table
     """
     __tablename__ = 'features'
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String, nullable=False)
     description = Column(Text, nullable=False)
-    M = Column(Integer, nullable=False)  # Было "lr1"
+    lvl = Column(Integer, nullable=False)
     
     # Relationships
     class_features = relationship("ClassFeatures", secondary=features_link, 
                                   back_populates="features_rel")
 
 class LanguagesBase(Base):
-    """_summary_
-
-    Args:
-        Base (_type_): _description_
+    """the languages table
     """
     __tablename__ = 'languages'
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String, nullable=False)
 
 class LegacyBase(Base):
-    """_summary_
-
-    Args:
-        Base (_type_): _description_
+    """the legacy table
     """
     __tablename__ = 'legacy'
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -267,10 +229,7 @@ class LegacyBase(Base):
     legacy_traits = relationship("LegacyTraits", secondary=legacy_traits_link, back_populates="legacies")
 
 class LegacyTraitsBase(Base):
-    """_summary_
-
-    Args:
-        Base (_type_): _description_
+    """table of legacy features
     """
     __tablename__ = 'legacyTraits'
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -279,10 +238,7 @@ class LegacyTraitsBase(Base):
     lvl = Column(Integer)
 
 class OriginsBase(Base):
-    """_summary_
-
-    Args:
-        Base (_type_): _description_
+    """the origins table
     """
     __tablename__ = 'origins'
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -294,10 +250,7 @@ class OriginsBase(Base):
     species = relationship("Species")
 
 class PropertiesBase(Base):
-    """_summary_
-
-    Args:
-        Base (_type_): _description_
+    """the properties weapons table
     """
     __tablename__ = 'properties'
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -308,10 +261,7 @@ class PropertiesBase(Base):
     weapons = relationship("Weapons", secondary=properties_link, back_populates="properties")
 
 class SavingThrowBase(Base):
-    """_summary_
-
-    Args:
-        Base (_type_): _description_
+    """the saving throw table
     """
     __tablename__ = 'savingThrow'
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -322,10 +272,7 @@ class SavingThrowBase(Base):
                            back_populates="saving_throws")
 
 class SkillProfBase(Base):
-    """_summary_
-
-    Args:
-        Base (_type_): _description_
+    """table of skill profience
     """
     __tablename__ = 'skillProf'
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -338,10 +285,7 @@ class SkillProfBase(Base):
                                back_populates="skill_proficiencies")
 
 class SpeciesBase(Base):
-    """_summary_
-
-    Args:
-        Base (_type_): _description_
+    """the species table
     """
     __tablename__ = 'species'
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -357,10 +301,7 @@ class SpeciesBase(Base):
     traits_rel = relationship("Traits", secondary=traits_link, back_populates="species")
 
 class SpellsBase(Base):
-    """_summary_
-
-    Args:
-        Base (_type_): _description_
+    """the spells table
     """
     __tablename__ = 'spells'
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -372,10 +313,7 @@ class SpellsBase(Base):
     special = Column(Integer)
 
 class ToolProfBase(Base):
-    """_summary_
-
-    Args:
-        Base (_type_): _description_
+    """table of tool profience
     """
     __tablename__ = 'toolProf'
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -386,10 +324,7 @@ class ToolProfBase(Base):
     classes = relationship("Class", secondary=tool_prof_link, back_populates="tool_proficiencies")
 
 class TraitsBase(Base):
-    """_summary_
-
-    Args:
-        Base (_type_): _description_
+    """the table traits
     """
     __tablename__ = 'traits'
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -401,10 +336,7 @@ class TraitsBase(Base):
     species = relationship("Species", secondary=traits_link, back_populates="traits_rel")
 
 class WeaponProfBase(Base):
-    """_summary_
-
-    Args:
-        Base (_type_): _description_
+    """table of weapon profience 
     """
     __tablename__ = 'weaponProf'
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -413,10 +345,7 @@ class WeaponProfBase(Base):
     description = Column(Text, nullable=False)
 
 class WeaponsBase(Base):
-    """_summary_
-
-    Args:
-        Base (_type_): _description_
+    """the weapons table
     """
     __tablename__ = 'weapons'
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -444,8 +373,8 @@ BackgroundBase.tool_proficiencies = relationship("ToolProf",
                                                  back_populates="backgrounds")
 
 # Создание БД
-def create_database(db_url='sqlite:///dnd_database.db'):
+def create_database(db_url='sqlite:///project/data/database/DnDUIDB.db'):
     engine = create_engine(db_url)
     Base.metadata.create_all(engine)
-    print(f"База данных создана успешно: {db_url}")
+    logging.debug("Database has been created")
     return engine

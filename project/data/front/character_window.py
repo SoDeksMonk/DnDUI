@@ -29,8 +29,10 @@ class CharacterWindow(Screen):
 
         for let in self._list_stat:
             self.ids.get(f"{let[:3]}_mod").text = str(*Chart.get_modifier(let))
-        
+    #updating the data    
     def reboot(self) -> None:
+        """updating the data
+        """
         self.ids.lvl_btn.text = str(Chart.get_stat("lvl"))
         self.ids.exp_cur_nee.text = (str(Chart.get_stat("exp_current"))
                                       + "/" + 
@@ -44,6 +46,8 @@ class CharacterWindow(Screen):
         Chart.up_lvl()
 
     def give_exp(self) -> None:
+        """Transferring experience to a character's class
+        """
         if self.ids.exp_set.text.isdigit():
             if not self.ids.exp_set.focus and self.ids.exp_set.text != "":
                 Chart.give_exp_current("current", int(self.ids.exp_set.text))
