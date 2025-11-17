@@ -1,15 +1,14 @@
 import csv
 import sqlite3
 from pathlib import Path
+ 
             
 class SqliteWork:
-    __pathDB = ""
-
     def __init__(self):
-        __pathDB = ""
+        self._pathDB = ""
 
     def data_path(self, data_path):
-        self.__pathDB = data_path
+        self._pathDB = data_path
     
     def initialization_tables(self, connection):
         try:
@@ -92,7 +91,7 @@ class SqliteWork:
             );
             '''
             #
-            create_table_language_BD = '''
+            create_table_language_db = '''
             CREATE TABLE IF NOT EXISTS "languages_BD" (
                 "languages_id"	INTEGER NOT NULL,
                 "language_name"	TEXT NOT NULL UNIQUE,
@@ -100,7 +99,7 @@ class SqliteWork:
             );
             '''
             #
-            create_table_skills_BD = '''
+            create_table_skills_bd = '''
             CREATE TABLE IF NOT EXISTS "skills_BD" (
                 "Skill_id"	INTEGER NOT NULL,
                 "skill_nameFirst"	TEXT NOT NULL,
@@ -114,7 +113,7 @@ class SqliteWork:
             );
             '''
             #
-            create_table_SK_skills_BD = '''
+            create_table_sk_skills_bd = '''
             CREATE TABLE IF NOT EXISTS "SK_skills_BD" (
                 "SK_skills_BD_id"	INTEGER NOT NULL,
                 "SK_skill_name"	TEXT NOT NULL,
@@ -147,9 +146,9 @@ class SqliteWork:
                 create_table_race,
                 create_table_alignments,
                 create_table_languages_catalog,
-                create_table_language_BD,
-                create_table_skills_BD,
-                create_table_SK_skills_BD,
+                create_table_language_db,
+                create_table_skills_bd,
+                create_table_sk_skills_bd,
                 create_table_stats
             ]
             cursor = connection.cursor()
@@ -163,7 +162,7 @@ class SqliteWork:
         except sqlite3.Error as error:
             print("Error initialization_tables! Error: ", error)
 
-    def initialization_fill(self, connection):
+    def initialization_fill(self, connection:str ) -> None:
         try:
             list_BD = [
                 "alignments",
@@ -187,7 +186,10 @@ class SqliteWork:
                 with open(dirfile+let_file+".csv", "r", newline="") as file:
                     reader = csv.DictReader(file)
                     for row in reader:
-                        cursor.execute(f"INSERT OR IGNORE INTO {let_file}{tuple(row)} VALUES {tuple(row.values())}")
+                        cursor.execute(
+                            f"INSERT OR IGNORE INTO {let_file}{tuple(row)}"
+                            f" VALUES {tuple(row.values())}"
+                            )
             
             connection.commit()
 
@@ -198,7 +200,10 @@ class SqliteWork:
 
     def open_connection(self):
         try:
-            connection = sqlite3.connect(self.__pathDB)
+            connection = sqlite3.connect(self._pathDB)
+            
+            #cursor = connection.cursor()
+            #cursor
             #connection = sqlite3.connect('Base_Project/Lib/character.db')
             return connection
         except sqlite3.Error as error:
@@ -206,28 +211,22 @@ class SqliteWork:
             if (connection):
                 connection.close()
                 print("Sqlite connected close(open_connection)")
-
+                
+    @staticmethod
     def close_connection(connetion):
         if (connetion):
                 connetion.close()
                 print("Sqlite connected close(close_connection)")
-
+                
+    @staticmethod
     def get_character_from_BD(connection, name_character):
         try:
             get_character = f'''
             SELECT
                 character.character_name,
-                
-                alignments.alignments_name,
-                (SELECT GROUP_CONCAT(languages_BD.language_name, ',')
-                    FROM Languages_catalog
-                    JOIN languages_BD ON Languages_catalog.id_lBD = languages_BD.languages_id
-                    WHERE Languages_catalog.id_character = character.character_id) as languages_BD,
                 character.lvl,
                 character.exp
             FROM character 
-            
-            JOIN alignments ON character.id_alignments = alignments.alignments_id
             WHERE character.character_name = '{name_character}'
             '''
 
@@ -239,7 +238,8 @@ class SqliteWork:
             return character
         except sqlite3.Error as error:
             print(f"Error get_character_from_BD! Error:", error)
-
+            
+    @staticmethod
     def get_character_race(connection, name_character):
         try:
             get_character_race = f'''
@@ -259,7 +259,8 @@ class SqliteWork:
             return character_race
         except:
             print("Error get_character_race")
-
+            
+    @staticmethod
     def get_character_class(connection, name_character):
         try:
             get_character_class = f'''
@@ -278,13 +279,84 @@ class SqliteWork:
             return character_class
         except:
             print("Error get_character_race")
+            
+    @staticmethod
+    def get_character_languages(connection, name_character):
+        try:
+            get_character_languages = f'''
+                SELECT	
+                    languages_BD.language_name
+                FROM character
+                JOIN Languages_catalog ON character.character_id = Languages_catalog.id_character
+                JOIN languages_BD ON Languages_catalog.id_lBD = languages_BD.languages_id
+                WHERE character.character_name = '{name_character}'
+                '''
 
-    def get_character_languages():
-        pass
+            cursor = connection.cursor()
+            cursor.execute(get_character_languages)
+            character_languages1, character_languages2 = tuple(cursor.fetchall())
+            cursor.close()
+            print("Complited get_character_languages")
+            return *character_languages1, *character_languages2
+        except:
+            print("Error get_character_languages")
+            
+    @staticmethod
+    def get_character_alignments(connection, name_character):
+        try:
+            get_character_languages = f'''
+                SELECT	
+                    alignments.alignments_name
+                FROM character
+                JOIN alignments ON alignments.alignments_id = character.id_alignments
+                WHERE character.character_name = '{name_character}'
+                '''
 
-    def get_character_alignments():
-        pass
+            cursor = connection.cursor()
+            cursor.execute(get_character_languages)
+            character_alignments = tuple(cursor.fetchall())[0]
+            cursor.close()
+            print("Complited get_character_alignments")
+            return character_alignments
+        except:
+            print("Error get_character_alignments")
+            
+    @staticmethod
+    def get_character_skills(connection, name_character):
+        try:
+            get_character_skills = f'''
+                SELECT
+                    skills_BD.skill_nameFirst,
+                    skills_BD.description
+                FROM class_catalog
+                JOIN skills_BD ON class_catalog.class_id = skills_BD.id_class
+                JOIN character
+                WHERE character.character_name = '{name_character}'
+                '''
 
+            get_character_skills_cecond = f'''
+            SELECT
+                SK_skills_BD.SK_skill_name,
+                SK_skills_BD.description
+            FROM skills_BD
+            JOIN skills_link ON skills_link.id_skills_BD = skills_BD.Skill_id
+            JOIN SK_skills_BD ON skills_link.id_SK_skills_BD = SK_skills_BD.SK_skills_BD_id
+            JOIN character ON character.character_name = '{name_character}'
+            JOIN class_catalog ON class_catalog.class_id = skills_BD.id_class
+            WHERE character.id_class = class_catalog.class_id
+            '''
+            cursor = connection.cursor()
+            cursor.execute(get_character_skills)
+            char_skills_nameF = cursor.fetchall()
+            cursor.execute(get_character_skills_cecond)
+            char_skills_nameS = cursor.fetchall() 
+            cursor.close()
+            print("Complited get_character_skills")
+            return *char_skills_nameF, char_skills_nameS
+        except SyntaxError as error:
+            print("Error get_character_skills", error)
+            
+    @staticmethod
     def get_character_stats(connection, name_character):
         try:
             get_stats = f'''
@@ -299,6 +371,7 @@ class SqliteWork:
             JOIN stats ON stats.id_character = character.character_id
             WHERE character.character_name = '{name_character}'
             '''
+
             cursor = connection.cursor()
             cursor.execute(get_stats)
             character_stats = tuple(cursor.fetchall())[0]
@@ -306,9 +379,10 @@ class SqliteWork:
             print("Complited get_character_stats")
             return character_stats
         except:
-            print("Error get_character_stats_plus")
+            print("Error get_character_stats")
             return 0
-
+        
+    @staticmethod
     def get_character_stats_plus(connection, name_character):
         try:
             get_stats_plus = f'''
@@ -323,6 +397,7 @@ class SqliteWork:
             JOIN race ON race.race_id = character.id_race
             WHERE character.character_name = '{name_character}'
             '''
+
             cursor = connection.cursor()
             cursor.execute(get_stats_plus)
             character_stats_plus = tuple(cursor.fetchall())[0]
@@ -332,19 +407,34 @@ class SqliteWork:
         except:
             print("Error get_character_stats_plus")
             return 0
+        
+    @staticmethod
+    def set_new_character(*args):
+        """getting a tuple of character parameters as input 
 
-SqliteWork.data_path(SqliteWork, 'Base_Project/Lib/DBApp.db')
-connect = SqliteWork.open_connection(SqliteWork)
-SqliteWork.initialization_tables(SqliteWork, connect)
-SqliteWork.initialization_fill(SqliteWork, connect)
-character = SqliteWork.get_character_from_BD(connect, "Jhon")
-print(character)
-char_race = SqliteWork.get_character_race(connect, "Jhon")
-print(char_race)
-char_class = SqliteWork.get_character_class(connect, "Jhon")
-print(char_class)
-test1 = SqliteWork.get_character_stats(connect, "Jhon")
-print(test1)
-test2 = SqliteWork.get_character_stats_plus(connect, "Jhon")
-print(test2)
-SqliteWork.close_connection(connect)
+        Input:
+            Name: string
+            Class: string
+            Race: string
+            Alignment: string
+            Languages: tuple string
+            Level: integer
+            Experience: integer
+            stats: tuple integer
+        """
+        try:
+            #= args
+            new_character = '''
+
+            '''
+
+            #cursor = connection.cursor()
+            #cursor.execute()
+            #character_stats_plus = tuple(cursor.fetchall())[0]
+            #cursor.close()
+            print("Complited set_new_character")
+            return args[0]  
+        except SyntaxError as error:
+            print("Error set_new_character", error)
+            return 0
+

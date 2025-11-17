@@ -1,4 +1,0 @@
-Skill_id,skill_nameFirst,description,lvl_class,id_class,id_race
-1,combat style,You choose a fighting style that suits your specialty.,1,1,
-2,second wind,"You have a limited source of stamina that you can use to protect yourself. On your turn, you can use a bonus action to restore hits in the amount of 1k10 + your warrior level.",1,1,
-3,Dark vision,"At a distance of 60 feet, you can see in dim lighting as if it were bright lighting, and in the dark as if it were dim lighting.",0,,2
