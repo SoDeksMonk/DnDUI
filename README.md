@@ -5,3 +5,5 @@ I'm interested in playing the board game DND, but the constant paperwork is kill
 There are plans to add a server-side component via FastAPI.
 
 Skills: PYTHON / SQL / SQLALCHEMY / KIVYPYTHON
+
+#not done
